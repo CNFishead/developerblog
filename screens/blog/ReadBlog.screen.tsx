@@ -12,36 +12,35 @@ interface ReadBlogProps {
   blog: BlogType;
 }
 const ReadBlog = ({ blog }: ReadBlogProps) => {
-  console.log(blog);
   const { data, isLoading, isError, error } = useGetBlogData({ filter: "isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <h1 className={`section-title`}>{blog?.blogTitle}</h1>
         <div className={styles.coverImageContainer}>
-          <Image src={blog.blogImageUrl} alt={blog.blogTitle} preview={false} />
+          <Image src={blog?.blogImageUrl} alt={blog.blogTitle} preview={false} />
         </div>
         <div className={styles.metaContainer}>
           <span className={styles.metaItem}>
             <FaUser />
-            <span className={styles.metaItemText}>{blog.author}</span>
+            <span className={styles.metaItemText}>{blog?.author}</span>
           </span>
           <span className={styles.metaItem}>
             <FaCalendarAlt />
-            <span className={styles.metaItemText}>{new Date(blog.createdAt).toLocaleDateString()}</span>
+            <span className={styles.metaItemText}>{new Date(blog?.createdAt).toLocaleDateString()}</span>
           </span>
         </div>
         <div className={styles.metaContainer}>
           <span className={`${styles.metaItem} ${styles.descriptionContainer}`}>
-            <span className={styles.metaItemText}>{blog.description}</span>
+            <span className={styles.metaItemText}>{blog?.description}</span>
           </span>
         </div>
 
-        <div className={styles.contentContainer}>{parser(`${parser(`${blog.content}`)}`)}</div>
+        <div className={styles.contentContainer}>{parser(`${parser(`${blog?.content}`)}`)}</div>
         <div className={`${styles.metaContainer} ${styles.metaFooterContainer}`}>
           <span className={styles.metaItem}>
             <span className={styles.metaItemText}>
-              {blog.tags.map((tag, index) => (
+              {blog?.tags?.map((tag, index) => (
                 <span key={tag + index} className={styles.tagItem}>
                   {tag}
                 </span>
