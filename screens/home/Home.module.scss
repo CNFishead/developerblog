@@ -1,0 +1,88 @@
+@import "@/styles/globals.scss";
+.container {
+  .topContainer {
+    .topContent {
+      position: relative;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 5%;
+      .content {
+        width: 65%;
+        z-index: 1;
+        color: white;
+        p {
+          mix-blend-mode: difference;
+        }
+        h1 {
+          font-size: 72px;
+          font-weight: 600;
+          margin: 0;
+        }
+
+        .subtitle {
+          font-size: 40px;
+          font-weight: 300;
+        }
+      }
+      .imageContainer {
+      }
+      .waveContainer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+        filter: blur(2px);
+      }
+    }
+  }
+  .articleContainer {
+    display: flex;
+    gap: 50px;
+    width: 90%;
+    margin: 5% auto;
+    position: relative;
+
+    .leftContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .featuredContainer {
+        @extend .cardContainer;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .mostRecentContainer {
+        @extend .cardContainer;
+
+        .titleContainer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+    .rightContainer {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+.articlesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.emphasis {
+  font-weight: 600;
+  color: var(--secondary);
+}

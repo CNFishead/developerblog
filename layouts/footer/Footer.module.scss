@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .linksContainer {
+    padding: 0 2%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+  }
+}

@@ -1,0 +1,69 @@
+@import "@/styles/globals.scss";
+
+.container {
+  height: 100%;
+  .featuredCard {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: transparent;
+    height: 100%;
+
+    .cardBody {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .description {
+        flex: 1;
+      }
+    }
+  }
+
+  .article {
+    @extend .cardContainer;
+    flex-direction: row !important;
+    border: 0;
+    border-bottom: 1px solid var(--quaternary-light) !important;
+    border-radius: 5px !important;
+    gap: 10px;
+    width: 100%;
+    .articleImage {
+      width: 25%;
+      max-width: 150px;
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    }
+    h3 {
+      margin: 0;
+    }
+    .articleContent {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      .titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .contentContainer {
+        display: flex;
+        justify-content: flex-end;
+        .description {
+          flex: 1;
+        }
+        .actionContainer {
+          width: 20%;
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
