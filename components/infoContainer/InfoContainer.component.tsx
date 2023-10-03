@@ -1,16 +1,20 @@
-import { Image, Button, Form, Input } from "antd";
+import { Image, Button, Form, Input, Skeleton, Empty } from "antd";
 import styles from "./InfoContainer.module.scss";
 import formStyles from "@/styles/Form.module.scss";
 import React from "react";
 import socialLinks from "@/data/socialLinks";
 import BlogCard from "../blogCard/BlogCard.component";
 import BlogType from "@/types/BlogType";
+import Error from "../error/Error.component";
 
 interface InfoContainerProps {
   blogs?: BlogType[];
+  loading?: boolean;
+  isError?: boolean;
+  error?: any;
 }
 
-const InfoContainer = ({ blogs }: InfoContainerProps) => {
+const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) => {
   const [showSubscribe, setShowSubscribe] = React.useState<boolean>(false);
   const [form] = Form.useForm();
 
@@ -23,7 +27,7 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
         <div className={styles.contentContainer}>
           <p>
             Join the journey, stay updated, and be a part of the conversation. Follow me on my social media channels to get the latest
-            updates, behind-the-scenes glimpses, and more. Let's connect and share the digital adventure together!
+            updates, behind-the-scenes glimpses, and more. Let&apos;s connect and share the digital adventure together!
           </p>
           <div className={styles.linksContainer}>
             {socialLinks.map((link: any) => {
@@ -35,7 +39,7 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
       <div className={styles.newsLetterCard}>
         <h1 className={`section-title`}>Newsletter</h1>
         <span>
-          If you'd like to stay up to date with the latest news, updates, and more, please subscribe to my newsletter. I promise not to
+          If you&apos;d like to stay up to date with the latest news, updates, and more, please subscribe to my newsletter. I promise not to
         </span>
         <div className={styles.actionContainer}>
           {showSubscribe ? (
@@ -62,9 +66,17 @@ const InfoContainer = ({ blogs }: InfoContainerProps) => {
         </div>
       </div>
       <div className={styles.blogsContainer}>
-        {blogs?.map((blog) => {
-          return <BlogCard blog={blog} key={blog._id} large={false} showDescription={true} />;
-        })}
+        {loading ? (
+          <Skeleton active />
+        ) : isError ? (
+          <Error error={error} />
+        ) : blogs?.length === 0 ? (
+          <Empty description="No blogs found." />
+        ) : (
+          blogs?.map((blog) => {
+            return <BlogCard blog={blog} key={blog._id} large={false} showDescription={true} />;
+          })
+        )}
       </div>
     </>
   );

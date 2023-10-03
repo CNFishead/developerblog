@@ -9,7 +9,6 @@ interface BlogDetailsProps {
 }
 
 export default function BlogDetails({ props }: BlogDetailsProps) {
-  console.log(props);
   if (props.error) {
     return (
       <>
@@ -26,7 +25,7 @@ export default function BlogDetails({ props }: BlogDetailsProps) {
         title: `${props?.blog?.blogTitle} | Austin Howard`,
         description: props?.blog?.description,
         image: props?.blog?.blogImageUrl,
-        url: `https://austinhoward.me/blog/${props.slug}`,
+        url: `https://blog.austinhoward.dev/blog/${props.slug}`,
       }}
       view="home"
     >

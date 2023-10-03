@@ -1,11 +1,66 @@
+@import "@/styles/globals.scss";
+
 .container {
   position: relative;
   display: flex;
   justify-content: space-evenly;
   padding: 5%;
+
+  @include mobile {
+    flex-direction: column;
+    padding: 2%;
+  }
+  .metaContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1% 0;
+    .metaItem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      .metaItemText {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        .tagItem {
+          font-size: 12px;
+          background-color: var(--primary);
+          padding: 0.5%;
+          border-radius: 20px;
+        }
+      }
+      &.descriptionContainer {
+        padding: 2%;
+        border-radius: 20px;
+        background-color: rgba(var(--primary-rgb), 0.5);
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    &.metaFooterContainer {
+      display: flex;
+    }
+    @include mobile {
+      flex-direction: column;
+      padding: 2%;
+    }
+  }
   .leftContainer {
     width: 100%;
     padding: 0 2%;
+
+    .coverImageContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        object-fit: cover;
+      }
+    }
   }
   .rightContainer {
     position: sticky;
@@ -16,5 +71,11 @@
     top: 0;
     height: 100vh;
     overflow-y: auto;
+
+    @include mobile {
+      width: 100%;
+      position: relative;
+      height: auto;
+    }
   }
 }

@@ -7,9 +7,9 @@
   --tertiary: rgb(100, 204, 197);
   --quaternary: rgb(231, 231, 231);
   --dark: rgb(27, 27, 27);
-  --success: #198754;
-  --success-light: #31ca55;
-  --success-dark: #28a745;
+  --success: rgb(25, 135, 84);
+  --success-light: rgb(49, 202, 85);
+  --success-dark: rgb(40, 167, 69);
   --primary-light: rgb(19, 66, 85);
   --secondary-light: rgb(42, 113, 136);
   --tertiary-light: rgb(125, 238, 230);
@@ -19,6 +19,10 @@
   --tertiary-dark: rgb(90, 185, 179);
   --quaternary-dark: rgb(206, 205, 205);
   --tertiary-lighter: rgb(179, 240, 236);
+  --dark-rgb: 27, 27, 27;
+  --success-rgb: 25, 135, 84;
+  --success-light-rgb: 49, 202, 85;
+  --success-dark-rgb: 40, 167, 69;
   --primary-rgb: 5, 59, 80;
   --secondary-rgb: 23, 107, 135;
   --tertiary-rgb: 100, 204, 197;
@@ -128,6 +132,6 @@ input[type="number"]::-webkit-inner-spin-button {
   text-underline-offset: 0.5em;
 }
 
-.ant-pagination-item-link:disabled{
+.ant-pagination-item-link:disabled {
   color: red !important;
 }
