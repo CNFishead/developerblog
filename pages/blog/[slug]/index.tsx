@@ -26,6 +26,8 @@ export default function BlogDetails({ props }: BlogDetailsProps) {
         description: props?.blog?.description,
         image: props?.blog?.blogImageUrl,
         url: `https://blog.austinhoward.dev/blog/${props.slug}`,
+        // for keywords, tags, is an array of string objects so we need to map over them, and return just the string joined by a comma
+        keywords: props?.blog?.tags?.map((tag: string) => tag).join(","),
       }}
       view="home"
     >

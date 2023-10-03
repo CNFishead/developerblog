@@ -64,12 +64,19 @@
     }
     .rightContainer {
       position: sticky;
+      display: flex;
+      flex-direction: column;
+      gap: 5%;
+      width: 75%;
       top: 0;
       height: 100vh;
       overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+
+      @include mobile {
+        width: 100%;
+        position: relative;
+        height: auto;
+      }
     }
   }
 }

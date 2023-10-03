@@ -30,11 +30,13 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
             <span className={styles.metaItemText}>{new Date(blog?.createdAt).toLocaleDateString()}</span>
           </span>
         </div>
-        <div className={styles.metaContainer}>
-          <span className={`${styles.metaItem} ${styles.descriptionContainer}`}>
-            <span className={styles.metaItemText}>{blog?.description}</span>
-          </span>
-        </div>
+        {blog?.description && (
+          <div className={styles.metaContainer}>
+            <span className={`${styles.metaItem} ${styles.descriptionContainer}`}>
+              <span className={styles.metaItemText}>{blog?.description}</span>
+            </span>
+          </div>
+        )}
 
         <div className={styles.contentContainer}>{parser(`${parser(`${blog?.content}`)}`)}</div>
         <div className={`${styles.metaContainer} ${styles.metaFooterContainer}`}>
