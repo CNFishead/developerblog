@@ -8,7 +8,7 @@ interface HomeProps {
 
 export default function Home({ props }: HomeProps) {
   return (
-    <PageLayout meta={{}} view="home">
+    <PageLayout meta={{}} view="Home">
       <HomeScreen blogs={props.blogs} recentBlogs={props.recentBlogs} />
     </PageLayout>
   );

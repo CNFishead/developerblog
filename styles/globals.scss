@@ -57,7 +57,7 @@ $simple-animation: all 0.2s ease-in-out;
     height: 100%;
     background: linear-gradient(45deg, transparent 10%, var(--primary) 40%);
     background-size: 200% 100%;
-    transition: width .5s;
+    transition: width 0.5s;
     z-index: -1;
   }
 

@@ -12,7 +12,7 @@ export default function BlogDetails({ props }: BlogDetailsProps) {
   if (props.error) {
     return (
       <>
-        <PageLayout meta={{ title: "Blog | Austin Howard" }} view="home">
+        <PageLayout meta={{ title: "Blog | Austin Howard" }} view="Blogs">
           <Error error={props.error} />
         </PageLayout>
       </>
@@ -29,7 +29,7 @@ export default function BlogDetails({ props }: BlogDetailsProps) {
         // for keywords, tags, is an array of string objects so we need to map over them, and return just the string joined by a comma
         keywords: props?.blog?.tags?.map((tag: string) => tag).join(","),
       }}
-      view="home"
+      view=""
     >
       <ReadBlog blog={props.blog} />
     </PageLayout>

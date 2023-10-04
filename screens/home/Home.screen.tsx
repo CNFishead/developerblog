@@ -58,7 +58,7 @@ const Home = ({ blogs, recentBlogs }: HomeProps) => {
             <Avatar
               src="https://res.cloudinary.com/wulfdev/image/upload/v1694977181/portfolio/headshot.04f99695.jpg"
               alt="Austin Howard"
-              size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 150, xxl: 300 }}
+              size={{ xs: 100, sm: 200, md: 300, lg: 300, xl: 300, xxl: 300 }}
             />
           </div>
         </div>

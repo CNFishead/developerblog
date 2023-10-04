@@ -10,6 +10,11 @@ export const navigation = (options?: { loggedInData?: { user: any } }) => {
           link: "/",
           icon: <RiHome2Fill />,
         },
+        blogs: {
+          title: "Blogs",
+          link: "/blog",
+          icon: <RiHome2Fill />,
+        },
       },
     },
   };

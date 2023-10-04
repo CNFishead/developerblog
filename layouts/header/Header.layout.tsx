@@ -8,6 +8,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { BsPersonCircle } from "react-icons/bs";
 import Link from "next/link";
 import { Button, Form, Input } from "antd";
+import homelinks from "@/data/homelinks";
 
 interface HeaderProps {
   view?: string;
@@ -61,15 +62,13 @@ const Header = (props: HeaderProps) => {
         )}
 
         <div className={showSearch ? styles.linksContainer + " " + styles.searchShowing : styles.linksContainer}>
-          {/* {Object.values(navigation({}))
-            .filter((i: any) => !i.hidden)
-            .map((item: any) => {
-              return (
-                <div key={item.links} className={`${styles.linkItem} ${props.view === item.links.home.link ? styles.active : ""}`}>
-                  {item.title}
-                </div>
-              );
-            })} */}
+          {homelinks.map((link) => {
+            return (
+              <Link href={link.url} key={link.title}>
+                <span className={`${styles.navItem} ${props.view === link.title ? styles.active : ""}`}>{link.title}</span>
+              </Link>
+            );
+          })}
           <Button
             className={showSearch ? styles.showSearchBtn + " " + styles.showing : styles.showSearchBtn}
             onClick={() => setShowSearch(true)}

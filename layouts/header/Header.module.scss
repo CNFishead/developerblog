@@ -6,9 +6,12 @@
     // position: fixed;
     // top: 0;
     // left: 0;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 150px 1fr 70px;
+    width: 90%;
+    // display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // grid-template-columns: 150px 1fr 70px;
     // grid-template-columns: repeat(3, 1fr);
     // padding: 20px 20px 20px 5px;
     overflow: visible;
@@ -17,12 +20,17 @@
     // border-bottom: 1px solid rgba(0, 0, 0, 0.064);
     // backdrop-filter: blur(10px);
     // box-shadow: rgba(0, 0, 0, 0.049) 0px 10px 50px;
+    @include tablet{
+      display: flex;
+    }
     @include mobile {
-      grid-template-columns: 200px 1fr;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      width: 100%;
     }
     &.searchShowing {
       @include mobile {
-        grid-template-columns: 30px 1fr;
+        // grid-template-columns: 30px 1fr;
         .searchBackBtn {
           display: block;
         }
@@ -78,7 +86,7 @@
       }
       transition: all 0.3s ease-in-out;
 
-      // width: 100%;
+      width: 100%;
 
       @include mobile {
         display: none;
@@ -109,7 +117,6 @@
           width: 100%;
           flex: 1;
           margin-bottom: 0;
-        
 
           .searchInput {
             border: none;
@@ -162,6 +169,7 @@
       gap: 10px;
       // background-color: red;
       width: 100%;
+
       @include mobile {
         &.searchShowing {
           display: none;
@@ -225,11 +233,11 @@
         font-size: 15px;
         margin-left: 10px;
         cursor: pointer;
-        border: 1px solid;
         padding: 4px 20px;
         border-radius: 20px;
         transition: all 0.2s ease-in-out;
-        border: var(--bs-gray-300) 1px solid;
+        border: gray 1px solid;
+        color: white;
 
         &:hover {
           background-color: var(--primary-light);
@@ -239,6 +247,11 @@
           margin: 0;
           margin-left: 10px;
           text-decoration: none !important;
+        }
+
+        &.active {
+          background-color: var(--primary-light);
+          color: white;
         }
       }
     }

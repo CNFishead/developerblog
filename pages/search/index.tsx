@@ -15,7 +15,7 @@ export default function Home({ props }: HomeProps) {
       meta={{
         title: `Search: ${search} | The Digital Adventure`,
       }}
-      view="search"
+      view="Blogs"
     >
       <SearchPage />
     </PageLayout>

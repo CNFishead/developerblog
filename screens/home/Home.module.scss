@@ -14,17 +14,28 @@
           mix-blend-mode: difference;
         }
         h1 {
-          font-size: 72px;
+          font-size: 5rem;
           font-weight: 600;
           margin: 0;
+
+          @include mobile {
+            font-size: 2rem;
+          }
         }
 
         .subtitle {
           font-size: 40px;
           font-weight: 300;
+
+          @include mobile {
+            font-size: 24px;
+          }
         }
       }
       .imageContainer {
+        @include mobile {
+          display: none;
+        }
       }
       .waveContainer {
         position: absolute;
@@ -33,6 +44,8 @@
         width: 100%;
         z-index: 0;
         filter: blur(2px);
+        @include mobile {
+        }
       }
     }
   }
@@ -43,14 +56,30 @@
     margin: 5% auto;
     position: relative;
 
+    @include tablet {
+      flex-direction: column;
+      gap: 20px;
+    }
     .leftContainer {
       display: flex;
       flex-direction: column;
       gap: 20px;
+
+      @include tablet {
+        // width: 65%;
+      }
       .featuredContainer {
         @extend .cardContainer;
         display: grid !important;
         grid-template-columns: repeat(2, 1fr);
+
+        .featuredBlog {
+          width: 100%;
+        }
+        @include mobile {
+          display: flex !important;
+          flex-direction: column;
+        }
       }
       .mostRecentContainer {
         @extend .cardContainer;
@@ -72,10 +101,17 @@
       height: 100vh;
       overflow-y: auto;
 
-      @include mobile {
-        width: 100%;
+      // @include mobile {
+      //   width: 100%;
+      //   position: relative;
+      //   height: auto;
+      // }
+
+      @include tablet {
         position: relative;
         height: auto;
+        width: auto;
+        gap: 10px;
       }
     }
   }

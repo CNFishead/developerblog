@@ -2,6 +2,7 @@
 
 .container {
   height: 100%;
+  width: 100%;
   .featuredCard {
     padding: 2%;
     display: flex;
@@ -10,12 +11,21 @@
     background-color: transparent;
     height: 100%;
 
+    @include mobile {
+      padding: 0;
+    }
     .cardBody {
       height: 100%;
       display: flex;
       flex-direction: column;
       .description {
         flex: 1;
+      }
+    }
+    .imageContainer{
+      width: 100%;
+      img{
+        width: 100%
       }
     }
   }
