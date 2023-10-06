@@ -6,6 +6,7 @@ import parser from "html-react-parser";
 import useGetBlogData from "@/state/blog/useGetBlogData";
 import { FaCalendarAlt, FaTags, FaUser } from "react-icons/fa";
 import { Image } from "antd";
+import { useAddView } from "@/state/views";
 
 interface ReadBlogProps {
   // should be passed in from the inital props from the page
@@ -13,6 +14,13 @@ interface ReadBlogProps {
 }
 const ReadBlog = ({ blog }: ReadBlogProps) => {
   const { data, isLoading, isError, error } = useGetBlogData({ filter: "isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
+
+  const { mutate: updateBlogViewCount } = useAddView();
+
+  // when the component mounts update the view count
+  React.useEffect(() => {
+    updateBlogViewCount(blog?._id);
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
