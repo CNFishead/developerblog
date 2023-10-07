@@ -1,8 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
-import InfiniteScrollContainer from 'components/infiniteScrollContainer/InfiniteScrollContainer.component';
+import InfiniteScrollContainer from '@/components/infiniteScrollContainer/InfiniteScrollContainer.component';
 import React, { useEffect, useState } from 'react';
-import { useSearchStore } from 'state/search/search';
-import { useComments } from 'state/videos/comments';
+import { useSearchStore } from '@/state/search/search';
+import { useComments } from '@/state/blog/comments';
 
 import CommentForm from '../comment-form/CommentForm.component';
 import CommentItem from '../commentItem/CommentItem.component';
