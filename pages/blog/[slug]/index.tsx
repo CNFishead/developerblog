@@ -45,6 +45,6 @@ BlogDetails.getInitialProps = async (ctx: any) => {
     return { props: { blog: data.data } };
   } catch (error: any) {
     // console.log(error);
-    return { props: { error: error.response.data } };
+    return { props: { error: error.response?.data } };
   }
 };

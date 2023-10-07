@@ -18,6 +18,7 @@ $header-height: 4.4rem;
 
 $animation: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 $simple-animation: all 0.2s ease-in-out;
+$shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
 @mixin mobile {
   @media (max-width:#{$mobile-width}) {

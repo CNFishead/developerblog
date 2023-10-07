@@ -55,7 +55,7 @@ const InfiniteScrollContainer = (props: Props) => {
     return props.dataKey !== "" ? (props.needsDataParam ? page[dataKey][props.needsDataParam ? "data" : ""] : page[dataKey]) : page;
   };
 
-  if (isLoading || data.pages.length === 0) return <Skeleton active />;
+  if (isLoading || data?.pages.length === 0) return <Skeleton active />;
   if (isError) return <Error error={error} />;
 
   console.log(data);

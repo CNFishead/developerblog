@@ -1,0 +1,65 @@
+@import "@/styles/globals.scss";
+.commentContainer {
+  display: grid;
+  grid-template-columns: auto 50px;
+  margin-bottom: 15px;
+
+  overflow: hidden;
+  background-color: var(--primary);
+  padding: 2%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.1);
+
+  .commentDetails {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    gap: 10px;
+    overflow: hidden;
+
+    .commentContent {
+      word-wrap: break-word;
+      overflow: hidden;
+
+      p {
+        margin: 0;
+      }
+      span {
+        font-weight: bold;
+        margin-right: 5px;
+        width: fit-content;
+      }
+      color: var(--bs-gray-900);
+      font-size: 12px;
+
+      margin: 0;
+      cursor: pointer;
+      min-width: 100%;
+
+      &.large {
+        .commentText {
+          flex-direction: column;
+          padding: 10px 10px;
+          margin: 10px 0;
+          min-width: 100%;
+          background-color: $color-light;
+        }
+      }
+    }
+    .commentDate {
+      font-size: 0.6rem;
+      color: var(--bs-gray-500);
+      text-align: left;
+      margin-left: 35px;
+      margin-top: 0;
+    }
+  }
+
+  .icon {
+    font-size: 20px;
+    background-color: $color-light;
+    border-radius: 50%;
+  }
+}

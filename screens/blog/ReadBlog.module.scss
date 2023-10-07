@@ -1,7 +1,6 @@
 @import "@/styles/globals.scss";
 
 .container {
-  position: relative;
   display: flex;
   justify-content: space-evenly;
   padding: 5%;
@@ -76,6 +75,89 @@
       width: 100%;
       position: relative;
       height: auto;
+    }
+
+    .commentContainer {
+      height: 90vh;
+      overflow: hidden;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2%;
+
+      .titleContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .closeButton {
+          &:hover {
+            cursor: pointer;
+            background-color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+  .showCommentsButtonContainer {
+    position: absolute;
+    right: 0;
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+
+    @include mobile {
+      width: 50%;
+      top: 25%;
+      height: auto;
+    }
+
+    .showCommentsButton {
+      position: relative;
+      height: 3rem;
+      // padding: 0 10%;
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+      // border on everyside except right
+      border-left: 1px solid var(--quaternary);
+      border-top: 1px solid var(--quaternary);
+      border-bottom: 1px solid var(--quaternary);
+      border-right: 0;
+      background-color: transparent;
+      font-weight: 700;
+      color: var(--quaternary);
+      transition: background-color 0.5s;
+      overflow: hidden;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 10%, var(--primary) 40%);
+        background-size: 200% 100%;
+        transition: width 0.5s;
+        z-index: -1;
+      }
+
+      &:hover {
+        background-color: var(--secondary);
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        &::after {
+          width: 100%;
+          // position: relative;
+          color: white;
+          content: "Show Comments";
+        }
+      }
     }
   }
 }

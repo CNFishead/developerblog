@@ -13,9 +13,12 @@ export const addView = async (id: any) => {
   const device = userAgent.match(/(iPhone|iPad|Android|Windows Phone|Tablet|Mobile|Desktop)/i);
   const browser = userAgent.match(/(Chrome|Safari|Firefox|Edge|Opera)/i);
 
+  // if its mobile device, set deviceType to mobile, if its a tablet, set it to tablet
+  // if its desktop, set it to desktop
+  const deviceType = device ? (device[0].toLowerCase() === "mobile" ? "mobile" : "tablet") : "desktop";
   const { data } = await axios.put(`/blog/${id}/view`, {
     ip: ipResponse.ipString,
-    device: device ?? browser,
+    device: deviceType,
   });
 
   return data;

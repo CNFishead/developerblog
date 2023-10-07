@@ -13,4 +13,6 @@ export default interface BlogType {
   tags: [string];
   createdAt: Date;
   updatedAt: Date;
+  viewsCount: number;
+  commentsCount: number;
 }
