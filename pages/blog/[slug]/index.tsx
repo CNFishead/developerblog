@@ -1,5 +1,7 @@
+import React from "react";
 import Error from "@/components/error/Error.component";
 import PageLayout from "@/layouts/PageLayout.layout";
+import ProtectedContent from "@/layouts/protectedContent/ProtectedContent.layout";
 import ReadBlog from "@/screens/blog/ReadBlog.screen";
 import BlogType from "@/types/BlogType";
 import axios from "@/utils/axios";
@@ -9,11 +11,29 @@ interface BlogDetailsProps {
 }
 
 export default function BlogDetails({ props }: BlogDetailsProps) {
+  const [isProtected, setIsProtected] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    if (!props?.blog?.isPrivate) {
+      setIsProtected(false);
+    }
+  }, [props?.blog?.isPrivate]);
+
   if (props.error) {
     return (
       <>
         <PageLayout meta={{ title: "Blog | Austin Howard" }} view="Blogs">
           <Error error={props.error} />
+        </PageLayout>
+      </>
+    );
+  }
+
+  if (isProtected && !props.admin) {
+    return (
+      <>
+        <PageLayout meta={{ title: "Blog | Austin Howard" }} view="Blogs">
+          <ProtectedContent setPrivacy={setIsProtected} />
         </PageLayout>
       </>
     );
@@ -38,11 +58,11 @@ export default function BlogDetails({ props }: BlogDetailsProps) {
 
 BlogDetails.getInitialProps = async (ctx: any) => {
   // pull the slug
-  const { slug } = ctx.query;
+  const { slug, admin } = ctx.query;
   // fetch the blog
   try {
     const { data } = await axios.get(`/blog/${slug}/public`);
-    return { props: { blog: data.data } };
+    return { props: { blog: data.data, admin } };
   } catch (error: any) {
     // console.log(error);
     return { props: { error: error.response?.data } };

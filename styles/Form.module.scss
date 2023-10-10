@@ -1,4 +1,4 @@
-@import './globals.scss';
+@import "./globals.scss";
 
 .editContainer {
   background-color: white;
@@ -15,7 +15,7 @@
       font-size: 13px;
     }
   }
-  .help{
+  .help {
     font-size: 12px;
     font-weight: 400;
     color: $color-blue;
@@ -86,5 +86,12 @@
 
   &:hover {
     background-color: var(--primary-light) !important;
+  }
+  &:disabled {
+    // background-color: var(--quaternary-dark);
+    color: white;
+  }
+  &:hover:disabled {
+    background-color: transparent !important;
   }
 }
