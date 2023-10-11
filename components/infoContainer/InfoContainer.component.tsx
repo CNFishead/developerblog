@@ -1,4 +1,4 @@
-import { Image, Button, Form, Input, Skeleton, Empty } from "antd";
+import { Image, Button, Form, Input, Skeleton, Empty, message } from "antd";
 import styles from "./InfoContainer.module.scss";
 import formStyles from "@/styles/Form.module.scss";
 import React from "react";
@@ -6,6 +6,7 @@ import socialLinks from "@/data/socialLinks";
 import BlogCard from "../blogCard/BlogCard.component";
 import BlogType from "@/types/BlogType";
 import Error from "../error/Error.component";
+import usePostDataMutation from "@/state/usePostDataMutation";
 
 interface InfoContainerProps {
   blogs?: BlogType[];
@@ -18,6 +19,17 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
   const [showSubscribe, setShowSubscribe] = React.useState<boolean>(false);
   const [form] = Form.useForm();
 
+  const onSuccessCallback = (data: any) => {
+    if (data.success) {
+      setShowSubscribe(false);
+      message.success("You have successfully subscribed to my newsletter.");
+    }
+  };
+  const { mutate: newsLetterSignup } = usePostDataMutation({ url: "/util/newsletter", onSuccessCallback });
+
+  const onFormFinish = async (values: any) => {
+    newsLetterSignup(values);
+  };
   return (
     <>
       <div className={styles.socialCard}>
@@ -43,15 +55,9 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
         </span>
         <div className={styles.actionContainer}>
           {showSubscribe ? (
-            <Form
-              form={form}
-              onFinish={(values) => {
-                console.log(values);
-              }}
-              className={formStyles.form}
-            >
+            <Form form={form} onFinish={() => onFormFinish(form.getFieldsValue())} className={formStyles.form}>
               <Form.Item name="email" rules={[{ required: true, message: "Please enter your email address." }]}>
-                <Input placeholder="Email" className={formStyles.input} disabled />
+                <Input placeholder="Email" className={formStyles.input} />
               </Form.Item>
               <p className={formStyles.help}>By clicking subscribe you agree to receive emails from me. I promise not to spam you.</p>
               <Button htmlType="submit" className={styles.subscribeButton}>
