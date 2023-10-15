@@ -53,7 +53,7 @@ const Header = (props: HeaderProps) => {
                 <Input placeholder="Search Blogs" className={styles.searchInput} />
               </Form.Item>
               <Form.Item className={styles.searchBtnItem}>
-                <Button htmlType="submit" className={styles.searchBtn}>
+                <Button htmlType="submit" className={styles.searchBtn} aria-label="search blogs button">
                   <BiSearchAlt />
                 </Button>
               </Form.Item>

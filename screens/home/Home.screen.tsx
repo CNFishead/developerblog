@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./Home.module.scss";
 import formStyles from "@/styles/Form.module.scss";
-import { Avatar, Button, Image, Form, Input } from "antd";
+import { Avatar, Button, Form, Input } from "antd";
 import BlogType from "@/types/BlogType";
 import BlogCard from "@/components/blogCard/BlogCard.component";
 import socialLinks from "@/data/socialLinks";
 import Link from "next/link";
+import Image from "next/image";
 import InfoContainer from "@/components/infoContainer/InfoContainer.component";
 
 interface HomeProps {
@@ -50,15 +51,18 @@ const Home = ({ blogs, recentBlogs }: HomeProps) => {
               my church and community.
             </p>
             <p>If you'd like to get in touch, feel free to reach out to me by clicking here:</p>
-            <Button href="https://austinhoward.dev" type="primary">
+            <Button href="https://austinhoward.dev" type="primary" aria-label="Go to portfolio">
               Portfolio
             </Button>
           </div>
           <div className={styles.imageContainer}>
-            <Avatar
+            <Image
               src="https://res.cloudinary.com/wulfdev/image/upload/v1694977181/portfolio/headshot.04f99695.jpg"
               alt="Austin Howard"
-              size={{ xs: 100, sm: 200, md: 300, lg: 300, xl: 300, xxl: 300 }}
+              layout="responsive"
+              width={300}
+              height={300}
+              sizes="(min-width: 768px) 100vw, (min-width: 1200px) 75vw, 33vw"
             />
           </div>
         </div>
@@ -93,7 +97,9 @@ const Home = ({ blogs, recentBlogs }: HomeProps) => {
             <div className={styles.titleContainer}>
               <h1 className={`section-title`}>Most Recent Blogs</h1>
               <Link href="/blog">
-                <Button>See More</Button>
+                <Button aria-label="See more blogs" type="primary" className="transitionButton">
+                  See More
+                </Button>
               </Link>
             </div>
             <div className={`${styles.articlesContainer}`}>

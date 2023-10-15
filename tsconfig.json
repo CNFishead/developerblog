@@ -13,6 +13,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    // ignore implicit type any errors
+    "noImplicitAny": false,
     "paths": {
       "@/*": ["./*"]
     }

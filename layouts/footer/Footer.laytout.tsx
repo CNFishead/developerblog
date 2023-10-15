@@ -15,12 +15,14 @@ const Footer = () => {
         {socialLinks.map((social, indx) => {
           return (
             <div key={indx + social.id} className="social-link">
-              <a href={social.url}>{social.icon}</a>
+              <a href={social.url} aria-label={`Social Link ${social.name}`}>
+                {social.icon}
+              </a>
             </div>
           );
         })}
       </div>
-      <Row  style={{ textAlign: "center" }}>
+      <Row style={{ textAlign: "center" }}>
         <Col style={{ color: "#f3ec78" }}>
           <p>Connect with me!</p>
           <p>Wulf Developments {newdate}</p>

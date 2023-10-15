@@ -88,7 +88,13 @@ const CommentForm = (props: Props) => {
               {addCommentIsLoading ? (
                 <Loader />
               ) : (
-                <Button disabled={comment?.length === 0} htmlType="submit" className="postButton" type="primary">
+                <Button
+                  disabled={comment?.length === 0}
+                  htmlType="submit"
+                  className="postButton"
+                  type="primary"
+                  aria-label="post comment button"
+                >
                   Comment
                 </Button>
               )}

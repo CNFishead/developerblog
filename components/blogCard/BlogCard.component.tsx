@@ -1,10 +1,10 @@
 import BlogType from "@/types/BlogType";
 import React from "react";
 import styles from "./BlogCard.module.scss";
-import { Image } from "antd";
 import Link from "next/link";
 import dayjs from "dayjs";
 import { MdOutlineOpenInNew } from "react-icons/md";
+import Image from "next/image";
 
 interface BlogCardProps {
   blog: BlogType;
@@ -18,7 +18,7 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
       {large ? (
         <div className={styles.featuredCard}>
           <div className={styles.imageContainer}>
-            <Image alt={blog.blogTitle} src={blog?.blogImageUrl} />
+            <Image alt={blog.blogTitle} src={blog?.blogImageUrl} layout="fill" />
           </div>
           <div className={styles.cardBody}>
             <div className={styles.cardTitle}>
@@ -39,7 +39,9 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
             </div>
             <div className={styles.actionContainer}>
               <Link href={`/blog/${blog.slug}`}>
-                <button className={`transitionButton`}>Read More</button>
+                <button className={`transitionButton`} aria-label={`Read More: ${blog.blogTitle}`}>
+                  Read More
+                </button>
               </Link>
             </div>
           </div>
@@ -47,7 +49,7 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
       ) : (
         <div className={styles.article} key={blog._id}>
           <div className={styles.articleImage}>
-            <Image alt={blog?.blogTitle} src={blog?.blogImageUrl} className={styles.image} />
+            <Image alt={blog?.blogTitle} src={blog?.blogImageUrl} className={styles.image} layout="fill"  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
           </div>
           {/* just displaying the title and the date it was published */}
           <div className={styles.articleContent}>
@@ -67,7 +69,7 @@ const BlogCard = ({ blog, large, showDescription }: BlogCardProps) => {
               )}
               <div className={styles.actionContainer}>
                 <Link href={`/blog/${blog?.slug}`}>
-                  <button className={`transitionButton`}>
+                  <button className={`transitionButton`} aria-label={`Read Blog ${blog.blogTitle}`}>
                     <MdOutlineOpenInNew />
                   </button>
                 </Link>

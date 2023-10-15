@@ -22,10 +22,11 @@
         flex: 1;
       }
     }
-    .imageContainer{
-      width: 100%;
-      img{
-        width: 100%
+    .imageContainer {
+      position: relative;
+      min-height: 200px;
+      img {
+        width: 100%;
       }
     }
   }
@@ -39,8 +40,10 @@
     gap: 10px;
     width: 100%;
     .articleImage {
+      position: relative;
       width: 25%;
       max-width: 150px;
+      max-height: 150px;
       .image {
         width: 100%;
         height: 100%;

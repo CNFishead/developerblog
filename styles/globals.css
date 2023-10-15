@@ -1,6 +1,3 @@
-/* import google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Office&display=swap"');
-
 :root {
   --primary: rgb(5, 59, 80);
   --secondary: rgb(23, 107, 135);
@@ -38,6 +35,13 @@
   --tertiary-lighter-rgb: 179, 240, 236;
 }
 
+@font-face {
+  font-family: "Ysabeau Office";
+  src: url("/fonts/YsabeauOffice-Regular.woff2") format("woff2"), url("/fonts/YsabeauOffice-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 html,
 body {
   font-family: "Ysabeau Office", "Inter", sans-serif, serif;

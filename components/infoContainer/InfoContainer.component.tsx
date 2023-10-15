@@ -1,4 +1,5 @@
-import { Image, Button, Form, Input, Skeleton, Empty, message } from "antd";
+import { Button, Form, Input, Skeleton, Empty, message } from "antd";
+import Image from "next/image";
 import styles from "./InfoContainer.module.scss";
 import formStyles from "@/styles/Form.module.scss";
 import React from "react";
@@ -34,7 +35,7 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
     <>
       <div className={styles.socialCard}>
         <div className={styles.logoContainer}>
-          <Image src="/images/logo-192x192.png" alt="logo" width={100} height={100} preview={false} />
+          <Image src="/images/logo-192x192.png" alt="logo" width={100} height={100} />
         </div>
         <div className={styles.contentContainer}>
           <p>
@@ -43,7 +44,16 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
           </p>
           <div className={styles.linksContainer}>
             {socialLinks.map((link: any) => {
-              return <Button key={link.id} href={link.url} type="link" icon={link.icon} className={styles.socialButton}></Button>;
+              return (
+                <Button
+                  key={link.id}
+                  href={link.url}
+                  type="link"
+                  icon={link.icon}
+                  className={styles.socialButton}
+                  aria-label={`Social Link ${link.name}`}
+                />
+              );
             })}
           </div>
         </div>
@@ -60,12 +70,16 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
                 <Input placeholder="Email" className={formStyles.input} />
               </Form.Item>
               <p className={formStyles.help}>By clicking subscribe you agree to receive emails from me. I promise not to spam you.</p>
-              <Button htmlType="submit" className={styles.subscribeButton}>
+              <Button htmlType="submit" className={styles.subscribeButton} aria-label="subscribe to newsletter button">
                 Subscribe
               </Button>
             </Form>
           ) : (
-            <Button className={styles.subscribeButton} onClick={() => setShowSubscribe(!showSubscribe)}>
+            <Button
+              className={styles.subscribeButton}
+              onClick={() => setShowSubscribe(!showSubscribe)}
+              aria-label="subscribe to newsletter button"
+            >
               Subscribe
             </Button>
           )}
