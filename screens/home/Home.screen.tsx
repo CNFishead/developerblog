@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Home.module.scss";
 import formStyles from "@/styles/Form.module.scss";
-import { Avatar, Button, Form, Input } from "antd";
+import { Avatar, Button, Form, Input, Image } from "antd";
 import BlogType from "@/types/BlogType";
 import BlogCard from "@/components/blogCard/BlogCard.component";
 import socialLinks from "@/data/socialLinks";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import InfoContainer from "@/components/infoContainer/InfoContainer.component";
 
 interface HomeProps {
@@ -42,13 +42,14 @@ const Home = ({ blogs, recentBlogs }: HomeProps) => {
             </h1>
             <span className={styles.subtitle}>To Austin Howard's Blog</span>
             <p>
-              I'm a software engineer, currently working at <a href="https://saltshakersolutions.com/solutions">SaltShaker Solutions</a> in
-              Bristol, TN. I'm passionate about building things, and I love to learn new technologies. I'm currently interested in learning
-              more about React, TypeScript, and GraphQL.
+              I'm a software engineer, currently working at{" "}
+              <a href="https://saltshakersolutions.com/solutions">SaltShaker Solutions</a> in Bristol, TN. I'm
+              passionate about building things, and I love to learn new technologies. I'm currently interested in
+              learning more about React, TypeScript, and GraphQL.
             </p>
             <p>
-              I'm also a husband, father, and a Christian. I love spending time with my family, and I'm always looking for new ways to serve
-              my church and community.
+              I'm also a husband, father, and a Christian. I love spending time with my family, and I'm always looking
+              for new ways to serve my church and community.
             </p>
             <p>If you'd like to get in touch, feel free to reach out to me by clicking here:</p>
             <Button href="https://austinhoward.dev" type="primary" aria-label="Go to portfolio">
@@ -59,7 +60,6 @@ const Home = ({ blogs, recentBlogs }: HomeProps) => {
             <Image
               src="https://res.cloudinary.com/wulfdev/image/upload/v1694977181/portfolio/headshot.04f99695.jpg"
               alt="Austin Howard"
-              layout="responsive"
               width={300}
               height={300}
               sizes="(min-width: 768px) 100vw, (min-width: 1200px) 75vw, 33vw"

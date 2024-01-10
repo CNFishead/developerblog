@@ -39,8 +39,9 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
         </div>
         <div className={styles.contentContainer}>
           <p>
-            Join the journey, stay updated, and be a part of the conversation. Follow me on my social media channels to get the latest
-            updates, behind-the-scenes glimpses, and more. Let&apos;s connect and share the digital adventure together!
+            Join the journey, stay updated, and be a part of the conversation. Follow me on my social media channels to
+            get the latest updates, behind-the-scenes glimpses, and more. Let&apos;s connect and share the digital
+            adventure together!
           </p>
           <div className={styles.linksContainer}>
             {socialLinks.map((link: any) => {
@@ -61,7 +62,8 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
       <div className={styles.newsLetterCard}>
         <h1 className={`section-title`}>Newsletter</h1>
         <span>
-          If you&apos;d like to stay up to date with the latest news, updates, and more, please subscribe to my newsletter. I promise not to
+          If you&apos;d like to stay up to date with the latest news, updates, and more, please subscribe to my
+          newsletter. I promise not to spam you.
         </span>
         <div className={styles.actionContainer}>
           {showSubscribe ? (
@@ -69,7 +71,9 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
               <Form.Item name="email" rules={[{ required: true, message: "Please enter your email address." }]}>
                 <Input placeholder="Email" className={formStyles.input} />
               </Form.Item>
-              <p className={formStyles.help}>By clicking subscribe you agree to receive emails from me. I promise not to spam you.</p>
+              <p className={formStyles.help}>
+                By clicking subscribe you agree to receive emails from me. I promise not to spam you.
+              </p>
               <Button htmlType="submit" className={styles.subscribeButton} aria-label="subscribe to newsletter button">
                 Subscribe
               </Button>

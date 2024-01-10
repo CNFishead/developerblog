@@ -3,11 +3,12 @@
 .container {
   display: flex;
   justify-content: space-evenly;
-  padding: 5%;
+  padding: 0 5%;
+  margin: 2% 0;
 
   @include mobile {
     flex-direction: column;
-    padding: 2%;
+    padding: 0 2%;
   }
   .metaContainer {
     display: flex;

@@ -37,9 +37,9 @@
         position: relative;
         height: 100%;
         img {
-          min-height: 200px;
-          object-fit: cover;
+          max-width: 500px;
           border-radius: 50%;
+          object-fit: cover;
         }
         @include mobile {
           display: none;

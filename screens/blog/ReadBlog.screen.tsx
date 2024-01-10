@@ -17,7 +17,7 @@ interface ReadBlogProps {
 }
 const ReadBlog = ({ blog }: ReadBlogProps) => {
   const [showComments, setShowComments] = React.useState(false);
-  const { data, isLoading, isError, error } = useGetBlogData({ filter: "isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
+  const { data, isLoading, isError, error } = useGetBlogData({ filter: "isPublished;true,isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
 
   const { mutate: updateBlogViewCount } = useAddView();
   const {
