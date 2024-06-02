@@ -35,13 +35,9 @@
   --tertiary-lighter-rgb: 179, 240, 236;
 }
 
-@font-face {
-  font-family: "Ysabeau Office";
-  src: url("/fonts/YsabeauOffice-Regular.woff2") format("woff2"), url("/fonts/YsabeauOffice-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+ @media (forced-colors: active) {
+
+ }
 html,
 body {
   font-family: "Ysabeau Office", "Inter", sans-serif, serif;

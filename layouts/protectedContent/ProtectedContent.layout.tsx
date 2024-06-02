@@ -16,7 +16,7 @@ interface ProtectedContentProps {
 }
 
 const ProtectedContent = ({ setPrivacy }: ProtectedContentProps) => {
-  const { data } = useGetBlogData({ filter: "isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
+  const { data } = useGetBlogData({ filter: "isPublished;true,isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
   // Define the onSuccess callback function
   const handleMutationSuccess = (data: any) => {
     // Access the data returned from the mutation here

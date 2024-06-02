@@ -1,29 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "@/utils/axios";
-import { useSearchStore } from "../search/search";
+import { useSearchStore as store } from "./search/search";
 
-//query to retrieve user videos
-export const fetchBlogs = async (options?: {
+const fetchData = async (options?: {
+  url?: string;
   defaultKeyword?: string;
   defaultPageNumber?: number;
   defaultPageLimit?: number;
   defaultFilter?: string;
   defaultSort?: string;
 }) => {
-  const keyword = options?.defaultKeyword ?? useSearchStore.getState().search.toLowerCase();
-  const pageNumber = options?.defaultPageNumber ?? useSearchStore.getState().pageNumber;
-  const pageLimit = options?.defaultPageLimit ?? useSearchStore.getState().pageLimit;
-  const filter = options?.defaultFilter ?? useSearchStore.getState().filter;
-  const sort = options?.defaultSort ?? useSearchStore.getState().sort;
-  const setNumberPages = useSearchStore.getState().setNumberPages;
-  // console.log(filter);
+  const keyword = options?.defaultKeyword || store.getState().search;
+  const pageNumber = options?.defaultPageNumber || store.getState().pageNumber;
+  const pageLimit = options?.defaultPageLimit || store.getState().pageLimit; // Fix: Use defaultPageLimit here
+  const filter = options?.defaultFilter || store.getState().filter;
+  const sort = options?.defaultSort || store.getState().sort;
 
+  console.log(`firing request to ${options?.url}`);
   const { data } = await axios.get(
-    `/blog?keyword=${keyword}&pageNumber=${pageNumber}&limit=${pageLimit}&filterOptions=${filter},isPrivate;false&sortBy=${sort}`
+    `${options?.url}?keyword=${keyword}&pageNumber=${pageNumber}&limit=${pageLimit}&filterOptions=${filter}&sortBy=${sort}`
   );
-
-  // data should contain a property pages, which is the number of pages, which we can pass to zustand's setNumberPages
-  setNumberPages(data?.pages);
   return data;
 };
 
@@ -40,6 +36,10 @@ export const fetchBlogs = async (options?: {
  * @since 1.0
  */
 export default (options?: {
+  key: string | string[];
+  url?: string;
+  refetchOnWindowFocus?: boolean;
+  enabled?: boolean;
   keyword?: string;
   pageNumber?: number;
   pageLimit?: number;
@@ -48,13 +48,18 @@ export default (options?: {
   // onSuccess is a callback function that will be called on success, to do something with the data
   onSuccess?: (data: any) => void;
   onError?: (error: any) => void;
-  enabled?: boolean;
-  refetchOnWindowFocus?: boolean;
 }) => {
   const query = useQuery(
-    ["featuredBlogs"],
+    [
+      typeof options?.key === "string"
+        ? options?.key
+        : // if its an array, remove the array, return both elements as separate strings
+          options?.key[0],
+      options?.key[1],
+    ],
     () =>
-      fetchBlogs({
+      fetchData({
+        url: options?.url,
         defaultFilter: options?.filter,
         defaultKeyword: options?.keyword,
         defaultPageLimit: options?.pageLimit,

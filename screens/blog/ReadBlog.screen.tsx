@@ -10,14 +10,47 @@ import { useAddView } from "@/state/views";
 import CommentForm from "@/components/comments/comment-form/CommentForm.component";
 import useGetComments from "@/state/blog/useGetComments";
 import CommentItem from "@/components/comments/commentItem/CommentItem.component";
+import useFetchData from "@/state/useFetchData";
+import VideoPlayer from "@/components/videoPlayer/VideoPlayer.component";
+import { useParams } from "next/navigation";
+import Loader from "@/components/loader/Loader.component";
+import Error from "@/components/error/Error.component";
+import decryptData from "@/utils/decryptData";
+import ProtectedContent from "@/layouts/protectedContent/ProtectedContent.layout";
+import { useQueryClient } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
-interface ReadBlogProps {
-  // should be passed in from the inital props from the page
-  blog: BlogType;
-}
-const ReadBlog = ({ blog }: ReadBlogProps) => {
+const ReadBlog = () => {
+  // pull the slug out of params
+  const { slug } = useParams();
+  // pull the admin out of the query params
+  const searchParams = useSearchParams();
+  const admin = searchParams.get("admin");
+  const queryClient = useQueryClient();
+  const [blog, setBlog] = React.useState<any>({});
+  const [protectedContent, setProtectedContent] = React.useState(true);
   const [showComments, setShowComments] = React.useState(false);
-  const { data, isLoading, isError, error } = useGetBlogData({ filter: "isPublished;true,isPrivate;false", pageLimit: 3, sort: "createdAt;-1" });
+  const {
+    data: blogEncrypted,
+    isLoading: blogLoading,
+    isError: blogIsError,
+    error: blogError,
+    isFetching: blogIsFetching,
+  } = useFetchData({
+    url: `/blog/${slug}/public`,
+    key: [`readingBlog`, `${slug}`],
+    // disable this if there is no blog data
+    enabled: !!slug,
+  });
+  const { data, isLoading, isError, error } = useFetchData({
+    url: "/blog",
+    key: "blogScreenBlogs",
+    // disable this if there is no blog data
+    enabled: !!blog,
+    filter: "isPublished;true,isPrivate;false",
+    pageLimit: 5,
+    sort: "createdAt;-1",
+  });
 
   const { mutate: updateBlogViewCount } = useAddView();
   const {
@@ -29,15 +62,50 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
 
   // when the component mounts update the view count
   React.useEffect(() => {
-    updateBlogViewCount(blog?._id);
+    if (blog?._id) {
+      updateBlogViewCount(blog?._id);
+    }
   }, []);
+  // invalidate the query when the slug is updated
+  // React.useEffect(() => {
+  //     queryClient.invalidateQueries(["readingBlog"]);
+  // }, [slug]);
+
+  React.useEffect(() => {
+    // set the protected content to false if the blog is not private
+    if (blog?.isPrivate === false || admin === "true") {
+      setProtectedContent(false);
+    }
+  }, [blog]);
+
+  React.useEffect(() => {
+    if (blogEncrypted?.data) {
+      setBlog(JSON.parse(decryptData(blogEncrypted?.data)));
+    }
+  }, [blogEncrypted]);
+  if (blogLoading || blogIsFetching) {
+    return <Loader />;
+  }
+  if (blogIsError) {
+    return <Error error={blogError} />;
+  }
+  if (protectedContent) {
+    return <ProtectedContent setPrivacy={setProtectedContent} />;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <h1 className={`section-title`}>{blog?.blogTitle}</h1>
         <div className={styles.coverImageContainer}>
-          <Image src={blog?.blogImageUrl} alt={blog.blogTitle} preview={false} />
+          {blog?.blogImageUrl && blog?.blogImageUrl !== "/images/no-photo.jpg" && (
+            <Image src={blog?.blogImageUrl} alt={blog.blogTitle} preview={false} />
+          )}
         </div>
+        {blog?.isVlog && (
+          <div className={styles.videoContainer}>
+            <VideoPlayer video={blog} />
+          </div>
+        )}
         <div className={styles.metaContainer}>
           <span className={styles.metaItem}>
             <FaUser />
@@ -56,6 +124,7 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
             <span className={styles.metaItemText}>{blog?.commentsCount}</span>
           </span>
         </div>
+
         {blog?.description && (
           <div className={styles.metaContainer}>
             <span className={`${styles.metaItem} ${styles.descriptionContainer}`}>
@@ -64,7 +133,9 @@ const ReadBlog = ({ blog }: ReadBlogProps) => {
           </div>
         )}
 
-        <div className={styles.contentContainer}>{parser(`${parser(`${blog?.content}`)}`)}</div>
+        <div className={styles.contentContainer}>
+          <div>{parser(`${parser(`${blog?.content ?? ""}`)}`)}</div>
+        </div>
         <div className={`${styles.metaContainer} ${styles.metaFooterContainer}`}>
           <span className={styles.metaItem}>
             <span className={styles.metaItemText}>

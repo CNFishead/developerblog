@@ -4,6 +4,8 @@ export default interface BlogType {
   author: string;
   content: string;
   isFeatured: boolean;
+  isVlog: boolean;
+  videoUrl: string;
   isPrivate: boolean;
   isPublished: boolean;
   publishedAt: Date;

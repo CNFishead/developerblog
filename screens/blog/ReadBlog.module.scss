@@ -14,11 +14,13 @@
     display: flex;
     justify-content: space-evenly;
     margin: 1% 0;
+    width: 100%;
     .metaItem {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 5px;
+      width: 100%;
       .metaItemText {
         display: flex;
         flex-wrap: wrap;
@@ -26,8 +28,12 @@
         .tagItem {
           font-size: 12px;
           background-color: var(--primary);
-          padding: 0.5%;
-          border-radius: 20px;
+          padding: .5%;
+          border-radius: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 50px; 
         }
       }
       &.descriptionContainer {
