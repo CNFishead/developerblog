@@ -42,16 +42,24 @@ const Home = ({ blogs, recentBlogs }: HomeProps) => {
             </h1>
             <span className={styles.subtitle}>To Austin Howard's Blog</span>
             <p>
-              I'm a software engineer, currently working at{" "}
-              <a href="https://saltshakersolutions.com/solutions">SaltShaker Solutions</a> in Bristol, TN. I'm
-              passionate about building things, and I love to learn new technologies. I'm currently interested in
-              learning more about React, TypeScript, and GraphQL.
+              Hi, I'm Austin—a passionate software engineer with a knack for crafting innovative, user-focused
+              solutions. With experience spanning web and mobile applications, I specialize in building dynamic,
+              scalable platforms using modern frameworks like Next.js and MongoDB. I'm also the creator of{" "}
+              <a
+                href="https://shepherdcms.org"
+                style={{
+                  color: "#ff7e67",
+                  textDecoration: "underline",
+                  fontWeight: 600,
+                }}
+              >
+                ShepherdCMS
+              </a>
+              , a church management software designed to simplify and enhance ministry operations. When I'm not coding,
+              you'll find me working out, running an inspired D&D campaign, or exploring ways to integrate technology
+              into meaningful solutions. Welcome to my developer blog, where I share my journey, insights, and tips to
+              inspire and connect with the developer community!
             </p>
-            <p>
-              I'm also a husband, father, and a Christian. I love spending time with my family, and I'm always looking
-              for new ways to serve my church and community.
-            </p>
-            <p>If you'd like to get in touch, feel free to reach out to me by clicking here:</p>
             <Button href="https://austinhoward.dev" type="primary" aria-label="Go to portfolio">
               Portfolio
             </Button>

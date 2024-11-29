@@ -1,5 +1,4 @@
-import { Button, Form, Input, Skeleton, Empty, message } from "antd";
-import Image from "next/image";
+import { Button, Form, Input, Skeleton, Empty, message, Image } from "antd"; 
 import styles from "./InfoContainer.module.scss";
 import formStyles from "@/styles/Form.module.scss";
 import React from "react";
@@ -35,7 +34,7 @@ const InfoContainer = ({ blogs, loading, isError, error }: InfoContainerProps) =
     <>
       <div className={styles.socialCard}>
         <div className={styles.logoContainer}>
-          <Image src="/images/logo-192x192.png" alt="logo" width={100} height={100} />
+        <Image src="/images/logo-192x192.png" alt="logo" width={100} height={100} preview={false} />
         </div>
         <div className={styles.contentContainer}>
           <p>
